@@ -17,6 +17,7 @@ This is for EDUCATION purpose.
 #### Results
 - Workflow code
 - URL of the BUILD (https://github.com/...../actions/runs/12098085715)
+- Screenshot of the ECHO in the build
 
 
 ### Exercice 2 : Build and Test
@@ -28,6 +29,7 @@ This is for EDUCATION purpose.
 #### Results
 - Workflow code
 - URL of the BUILD (https://github.com/...../actions/runs/12098085715)
+- Screenshot of the TEST logs
 
 
 ### Exercice 3 : Execute SCA
@@ -40,6 +42,7 @@ This exercice is NOT in the previous tutorial but based on the previous exercice
 
 #### Results
 - Workflow code
+- Screenshot of the SCA run
 - URL of the BUILD (https://github.com/...../actions/runs/12098085715)
 - SCA finding (dependency name and version)
 
@@ -55,6 +58,7 @@ This exercice is NOT in the previous tutorial but based on the previous exercice
 
 #### Results
 - Workflow code
+- Screenshot of the SAST main finding
 - URL of the BUILD (https://github.com/...../actions/runs/12098085715)
 - SAST finding (file + line + CWE)
 
