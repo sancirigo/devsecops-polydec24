@@ -46,26 +46,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
-    steps: 
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install Bandit
-        run: pip install bandit
-
-      - name: Run Bandit SAST
-        run: bandit -r ./pages -o bandit-report.txt -f txt || echo "Bandit found issues"
-
-      - name: Upload Bandit Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: bandit-report
-          path: bandit-report.txt
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bearer
+        uses: bearer/bearer-action@v2
 
   test: 
     needs: [build, sca, sast]
