@@ -42,6 +42,29 @@ jobs:
       - name: Fix vulnerabilities (if possible)
         run: npm audit fix || echo "Some vulnerabilities may need manual intervention"
 
+  sast:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # use burp suite to scan the code
+      - name: Use Burp Suite
+        uses: shiftleftnet/burp-scan-action@v1
+        # minimal setup
+        with:
+          burp-suite-version: '2021.8.1'
+          burp-suite-path: '/opt/BurpSuiteCommunity'
+          burp-suite-project-file: 'burp-project.json'
+          burp-suite-report-file: 'burp-report.json'
+          burp-suite-report-format: 'json'
+          burp-suite-scan-type: 'crawl_and_audit'
+          burp-suite-scan-urls: 'http://localhost:3000'
+          burp-suite-scan-username: 'admin'
+          burp-suite-scan-password: 'admin'
+
   test: 
     needs: [build, sca]
     runs-on: ubuntu-latest
