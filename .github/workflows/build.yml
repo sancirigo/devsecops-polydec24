@@ -1,4 +1,4 @@
-name: build-test-sca
+name: build-test-sca-sast
 on: push
 
 jobs: 
@@ -50,23 +50,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # use burp suite to scan the code
-      - name: Use Burp Suite
-        uses: shiftleftnet/burp-scan-action@v1
-        # minimal setup
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          burp-suite-version: '2021.8.1'
-          burp-suite-path: '/opt/BurpSuiteCommunity'
-          burp-suite-project-file: 'burp-project.json'
-          burp-suite-report-file: 'burp-report.json'
-          burp-suite-report-format: 'json'
-          burp-suite-scan-type: 'crawl_and_audit'
-          burp-suite-scan-urls: 'http://localhost:3000'
-          burp-suite-scan-username: 'admin'
-          burp-suite-scan-password: 'admin'
+          python-version: '3.x'
+
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit SAST
+        run: bandit -r ./src -o bandit-report.txt -f txt || echo "Bandit found issues"
+
+      - name: Upload Bandit Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: bandit-report
+          path: bandit-report.txt
 
   test: 
-    needs: [build, sca]
+    needs: [build, sca, sast]
     runs-on: ubuntu-latest
 
     steps: 
