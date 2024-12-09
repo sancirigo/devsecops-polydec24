@@ -9,10 +9,10 @@
     "test": "next lint"
   },
   "dependencies": {
+    "google-translate-api-browser": "^5.0.0",
     "next": "14.2.10",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "google-translate-api-browser": "1.0.0"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "eslint": "8.57.1",
