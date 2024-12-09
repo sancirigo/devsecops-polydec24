@@ -39,9 +39,6 @@ jobs:
       - name: Run SCA (Audit dependencies)
         run: npm audit --audit-level=high
 
-      - name: Fix vulnerabilities (if possible)
-        run: npm audit fix || echo "Some vulnerabilities may need manual intervention"
-
   sast:
     needs: build
     runs-on: ubuntu-latest
