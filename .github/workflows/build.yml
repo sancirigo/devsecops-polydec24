@@ -59,7 +59,7 @@ jobs:
         run: pip install bandit
 
       - name: Run Bandit SAST
-        run: bandit -r ./src -o bandit-report.txt -f txt || echo "Bandit found issues"
+        run: bandit -r . -o bandit-report.txt -f txt || echo "Bandit found issues"
 
       - name: Upload Bandit Report
         uses: actions/upload-artifact@v3
